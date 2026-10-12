@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 float parallelResistance();
-//int serialResistance();
+float serialResistance();
 int main(){
 
     int function;
@@ -17,7 +17,7 @@ int main(){
                 break;
             case 2:
                 i=1;
-                //serialResistance();
+                printf("The total resistance is : %.1f", serialResistance());
                 break;
             default:
                 printf("\nInvalid Answer");
@@ -25,21 +25,36 @@ int main(){
         }
     }
 }
+float serialResistance(){
+    int i;
+    int numResistors;
+    int total= 0;
+    printf("\nHow many resistors do you need the parallel resistance of? ");
+    scanf("%d", &numResistors);
+    float *resistorArray = calloc(numResistors, sizeof(float));
+    for(i=0; i<numResistors; i++){
+        printf("Enter the resistance of resistor %d: ", i+1);
+        scanf("%f", &resistorArray[i]);
+    }
+    for(i=0; i<numResistors; i++){
+        total+=resistorArray[i];
+    }
+    return total;
+}
 float parallelResistance(){
     int i;
     int numResistors;
-    float total= 0;
+    int total= 0;
     printf("\nHow many resistors do you need the parallel resistance of? ");
     scanf("%d", &numResistors);
 
-    int *resistorArray = calloc(numResistors, sizeof(int));
+    float *resistorArray = calloc(numResistors, sizeof(float));
     for(i=0; i<numResistors; i++){
         printf("Enter the resistance of resistor %d: ", i+1);
-        scanf("%d", &resistorArray[i]);
+        scanf("%f", &resistorArray[i]);
     }
     for(i=0; i<numResistors; i++){
-        printf("%d, ", resistorArray[i]);
-        total=(total+(1/resistorArray[i]));
+        printf("%f, ", resistorArray[i]);
     }
 
     return total;
