@@ -13,11 +13,11 @@ int main(){
         switch(function){
             case 1:
                 i=1;
-                printf("\n%f", parallelResistance());
+                printf("\nThe total resistance is: %.1f", parallelResistance());
                 break;
             case 2:
                 i=1;
-                printf("The total resistance is : %.1f", serialResistance());
+                printf("\nThe total resistance is: %.1f", serialResistance());
                 break;
             default:
                 printf("\nInvalid Answer");
@@ -44,7 +44,7 @@ float serialResistance(){
 float parallelResistance(){
     int i;
     int numResistors;
-    int total= 0;
+    float total= 0;
     printf("\nHow many resistors do you need the parallel resistance of? ");
     scanf("%d", &numResistors);
 
@@ -54,9 +54,8 @@ float parallelResistance(){
         scanf("%f", &resistorArray[i]);
     }
     for(i=0; i<numResistors; i++){
-        printf("%f, ", resistorArray[i]);
+        total+= (1.0/resistorArray[i]);
     }
 
-    return total;
-
+    return 1.0 / total;
 }
